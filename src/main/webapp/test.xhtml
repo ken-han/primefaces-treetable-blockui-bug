@@ -5,14 +5,39 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html">
 
-    <h:head>
-        <title>PrimeFaces Test</title>
-    </h:head>
-    <h:body>
+<h:head>
+    <title>PrimeFaces Test</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:treeTable value="#{treeBean.root}"  stickyHeader="true" var="node" id="overview">
 
-        <h1>#{testView.testString}</h1>
+            <p:column>
+                <f:facet name="header">
+                    Name
+                </f:facet>
+                <h:outputText value="#{node.name}"></h:outputText>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Author
+                </f:facet>
+                <h:outputText value="#{node.author}"></h:outputText>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    ID
+                </f:facet>
+                <h:outputText value="#{node.id}"></h:outputText>
+            </p:column>
+        </p:treeTable>
 
-        <h1>#{testViewCdi.testString}</h1>
+        <p:blockUI block="overview" trigger="overview">
+            <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"/>
+            <br/><br/>
+            Loading
+        </p:blockUI>
 
-    </h:body>
+    </h:form>
+</h:body>
 </html>
